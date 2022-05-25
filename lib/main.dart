@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/helpers/dependency_injection.dart';
-import 'package:palacio_aseo/pages/home_page.dart';
+import 'package:palacio_aseo/pages/login.dart';
 
 void main() {
   DependencyInjection.initialize();
@@ -15,11 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Palacio del Aseo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: Login(),
     );
   }
 }

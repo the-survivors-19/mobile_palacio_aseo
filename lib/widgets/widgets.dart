@@ -1,0 +1,1 @@
+export 'package:palacio_aseo/widgets/text_frave.dart';
