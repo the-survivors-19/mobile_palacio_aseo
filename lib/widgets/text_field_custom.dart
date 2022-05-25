@@ -21,11 +21,11 @@ class TextFieldCustom extends StatelessWidget {
         fillColor: Color.fromRGBO(221, 227, 233, 1),
         prefixIcon: Icon( icono, color: Colors.grey),
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xffEBDCFA)),
+          borderSide: BorderSide(color: Color.fromARGB(255, 218, 218, 218)),
           borderRadius: BorderRadius.circular(50)
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xffEBDCFA)),
+          borderSide: BorderSide(color: Color.fromARGB(255, 104, 141, 176)),
           borderRadius: BorderRadius.circular(50),
         ),
         

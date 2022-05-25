@@ -5,7 +5,7 @@ class LogoHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: 10,
-      left: MediaQuery.of(context).size.width * 0.36,
+      left: MediaQuery.of(context).size.width * 0.32,
       child: Container(
         height: 200,
         width: 200,
