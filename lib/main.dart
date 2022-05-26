@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/helpers/dependency_injection.dart';
 import 'package:palacio_aseo/pages/login.dart';
+import 'package:palacio_aseo/pages/splash.dart';
 
 void main() {
   DependencyInjection.initialize();
@@ -16,10 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Palacio del Aseo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Login(),
+      initialRoute: "splash",
+      routes: {
+        "splash": (_) => SplashScreen(),
+        "login": (_) => Login(),
+      },
     );
   }
 }
