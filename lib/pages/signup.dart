@@ -70,8 +70,9 @@ class _TextField extends StatelessWidget {
               type: TextInputType.text,
               pass: true,
               texto: ' Contraseña'),
+          const SizedBox(height: 20),
           TextFieldCustom(
-              icono: Icons.visibility_off,
+              icono: Icons.home,
               type: TextInputType.text,
               pass: true,
               texto: ' Direccion'),
