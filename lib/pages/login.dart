@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:palacio_aseo/pages/home_page.dart';
+import 'package:palacio_aseo/widgets/navigatorbar.dart';
 import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/widgets/text_field_custom.dart';
@@ -40,7 +42,8 @@ class _BottonSignIn extends StatelessWidget {
       child: TextButton(
         child:
             const TextFrave(text: 'INICIAR', color: Colors.white, fontSize: 18),
-        onPressed: () {},
+        onPressed: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => NavBar())),
       ),
     );
   }

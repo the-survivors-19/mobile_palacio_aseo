@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ShoppCar extends StatelessWidget {
+  const ShoppCar({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(
-          "HOME",
+          "SHOPPING CART",
           style: TextStyle(fontSize: 25),
         ),
       ),
