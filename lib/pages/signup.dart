@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/widgets/text_field_custom.dart';
@@ -44,6 +48,18 @@ class _Botton extends StatelessWidget {
 }
 
 class _TextField extends StatelessWidget {
+  File? image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      this.image = imageTemporary;
+    } on PlatformException catch (e) {
+      print('Error en subir la foto: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -72,10 +88,20 @@ class _TextField extends StatelessWidget {
               texto: ' Contraseña'),
           const SizedBox(height: 20),
           TextFieldCustom(
-              icono: Icons.home,
-              type: TextInputType.text,
-              pass: true,
-              texto: ' Direccion'),
+            icono: Icons.home,
+            type: TextInputType.text,
+            pass: true,
+            texto: ' Direccion',
+          ),
+          const SizedBox(height: 20),
+          const TextFrave(
+              text: 'Seleccione una imagen', color: Colors.grey, fontSize: 18),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            child: const TextFrave(
+                text: 'Subir Imagen', color: Colors.white, fontSize: 16),
+            onPressed: () => pickImage(),
+          ),
           const SizedBox(height: 20),
         ],
       ),
