@@ -66,6 +66,7 @@ class _TextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         children: [
+          const SizedBox(height: 20),
           TextFieldCustom(
               icono: Icons.person,
               type: TextInputType.text,
