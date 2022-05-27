@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/pages/login.dart';
+import 'package:palacio_aseo/widgets/text_frave.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    var d = const Duration(seconds: 1);
+    var d = const Duration(seconds: 5);
     Future.delayed(d, () {
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
         builder: (context) {
@@ -31,9 +32,19 @@ class _SplashScreenState extends State<SplashScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/fondoprueba.jpg"),
+                fit: BoxFit.cover,
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.all(200),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: CircularProgressIndicator(
+                color: Colors.grey,
+              ),
+            ),
+          )
         ],
       ),
     );
