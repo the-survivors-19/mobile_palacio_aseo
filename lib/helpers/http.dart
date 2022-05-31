@@ -17,22 +17,27 @@ class Http {
     _logsEnabled = logsEnabled;
   }
 
-  Future<HttpResponse> request({
+  Future<HttpResponse<T>> request<T>({
     String path = '/',
     String method = 'GET',
     Map<String, String>? headers,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? data,
+    Map<String, dynamic>? formData,
+    T Function(dynamic data)? parser,
   }) async {
     try {
       final response = await _dio?.request(
         path,
-        options: Options(method: method, headers: headers),
+        options: Options(
+          method: method,
+          headers: headers,
+        ),
         queryParameters: queryParameters,
-        data: data,
+        data: formData != null ? FormData.fromMap(formData) : data,
       );
       if (_logsEnabled) _logger?.i(response?.data);
-      return HttpResponse.success(response?.data);
+      return HttpResponse.success<T>(response?.data);
     } catch (e) {
       if (_logsEnabled) _logger?.e(e);
       int statusCode = -1;

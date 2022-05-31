@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:palacio_aseo/pages/home_page.dart';
 import 'package:palacio_aseo/widgets/navigatorbar.dart';
 import 'package:palacio_aseo/widgets/header.dart';
@@ -8,6 +9,7 @@ import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/widgets/text_field_custom.dart';
 import 'package:palacio_aseo/pages/signup.dart';
 import 'package:palacio_aseo/widgets/widgets.dart';
+import 'package:palacio_aseo/api/authentication_api.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -113,6 +115,8 @@ class _EmailAndPassword extends StatelessWidget {
   String password = '';
   @override
   Widget build(BuildContext context) {
+    final _authenticationApi = GetIt.instance<AuthenticationApi>();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
@@ -161,7 +165,13 @@ class _EmailAndPassword extends StatelessWidget {
                       child: const TextFrave(
                           text: 'INICIAR', color: Colors.white, fontSize: 18),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          final res = _authenticationApi.login(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          );
+                          print(res);
+                        }
                       }),
                 ),
               )

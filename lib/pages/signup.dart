@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:palacio_aseo/api/authentication_api.dart';
 import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/widgets/text_field_custom.dart';
@@ -53,6 +55,8 @@ class _TextField extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final _authenticationApi = GetIt.instance<AuthenticationApi>();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
@@ -95,7 +99,7 @@ class _TextField extends StatelessWidget {
                 validator: (val) =>
                     val!.isEmpty ? "Introduce tu correo!" : null,
                 decoration: InputDecoration(
-                    hintText: "ejemplo@gmail.com",
+                    hintText: "usuario@dominio.com",
                     labelText: "Correo Electronico",
                     prefixIcon: Icon(Icons.email),
                     border: OutlineInputBorder(
@@ -177,6 +181,15 @@ class _TextField extends StatelessWidget {
                           fontSize: 18),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          final res = _authenticationApi.register(
+                            fullName: _nombreController.text,
+                            phone: _telefonoController.text,
+                            address: _directionController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                            passwordConfirmation: _repitpasswordController.text,
+                          );
+                          print(res);
                           Navigator.of(context).push(
                               MaterialPageRoute(builder: (_) => NavBar()));
                         }
@@ -199,8 +212,10 @@ class _Titulo extends StatelessWidget {
       child: Row(
         children: [
           TextButton(
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => Login())),
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => Login()));
+            },
             child: const TextFrave(
                 text: 'Iniciar Sesion',
                 fontSize: 18,
