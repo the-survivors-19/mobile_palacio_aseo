@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/widgets/drawer/drawer.dart';
 
+import '../widgets/navigatorbar.dart';
+
 class AdmProduc extends StatelessWidget {
   const AdmProduc({super.key});
 
@@ -13,7 +15,7 @@ class AdmProduc extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          "SHOPPING CART",
+          "PROVIDERS",
           style: TextStyle(fontSize: 25),
         ),
       ),

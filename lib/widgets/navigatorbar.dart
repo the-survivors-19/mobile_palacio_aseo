@@ -32,7 +32,28 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
       drawer: DrawerMenu(),
       appBar: AppBar(
-        title: Text("Palacio del Aseo"),
+        title: Text("Palacio Del Aseo"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          )
+        ],
+        //backgroundColor: Colors.purple,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromRGBO(50, 121, 187, 1),
+                Color.fromARGB(66, 121, 121, 121)
+              ],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+            ),
+          ),
+        ),
+        elevation: 20,
+        titleSpacing: 20,
       ),
       body: screens[index],
       bottomNavigationBar: Theme(
@@ -41,8 +62,8 @@ class _NavBarState extends State<NavBar> {
         ),
         child: CurvedNavigationBar(
           key: navigationKey,
-          height: 60,
-          animationCurve: Curves.easeInOut,
+          height: 55,
+          animationCurve: Curves.easeInOutCirc,
           color: Color.fromRGBO(50, 121, 187, 1),
           buttonBackgroundColor: Color.fromARGB(255, 43, 104, 160),
           backgroundColor: Colors.transparent,

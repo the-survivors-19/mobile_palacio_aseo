@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/pages/adm_products.dart';
+import 'package:palacio_aseo/widgets/navigatorbar.dart';
 
 class DrawerMenu extends StatelessWidget {
   @override
@@ -25,9 +26,10 @@ class DrawerMenu extends StatelessWidget {
                 .push(MaterialPageRoute(builder: (_) => AdmProduc())),
           ),
           ListTile(
-            title: Text('Provedores'),
+            title: Text('Home'),
             leading: Icon(Icons.perm_contact_cal),
-            onTap: () {},
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => NavBar())),
           ),
         ],
       ),

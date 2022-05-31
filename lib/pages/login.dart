@@ -21,31 +21,12 @@ class Login extends StatelessWidget {
           children: [HeaderLogin(), LogoHeader()],
         ),
         _Titulo(),
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         _EmailAndPassword(),
         _ForgotPassword(),
-        SizedBox(height: 40),
-        _BottonSignIn()
+        SizedBox(height: 10),
       ],
     ));
-  }
-}
-
-class _BottonSignIn extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(25),
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(50, 121, 187, 1),
-          borderRadius: BorderRadius.circular(50)),
-      child: TextButton(
-        child:
-            const TextFrave(text: 'INICIAR', color: Colors.white, fontSize: 18),
-        onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => NavBar())),
-      ),
-    );
   }
 }
 
@@ -126,23 +107,67 @@ class _ForgotPassword extends StatelessWidget {
 }
 
 class _EmailAndPassword extends StatelessWidget {
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        children: [
-          TextFieldCustom(
-              icono: Icons.mail_outline,
-              type: TextInputType.emailAddress,
-              texto: ' Correo Electronico'),
-          const SizedBox(height: 20),
-          TextFieldCustom(
-              icono: Icons.visibility_off,
-              type: TextInputType.text,
-              pass: true,
-              texto: ' Contraseña'),
-        ],
+      child: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                controller: _emailController,
+                autofocus: true,
+                autocorrect: true,
+                keyboardType: TextInputType.emailAddress,
+                validator: (val) =>
+                    val!.isEmpty ? "Ups! Introduce tu correo!" : null,
+                decoration: InputDecoration(
+                    hintText: "ejemplo@gmail.com",
+                    labelText: "Correo Electronico",
+                    prefixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16))),
+              ),
+              const SizedBox(height: 20),
+              TextFormField(
+                obscureText: true,
+                controller: _passwordController,
+                keyboardType: TextInputType.text,
+                validator: (val) =>
+                    val!.isEmpty ? "Ups! Introduce tu contraseña" : null,
+                decoration: InputDecoration(
+                    hintText: "Tu contraseña",
+                    labelText: "Contraseña",
+                    prefixIcon: Icon(Icons.lock_outline),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16))),
+              ),
+              const SizedBox(height: 40),
+              Container(
+                margin: const EdgeInsets.all(25),
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(50, 121, 187, 1),
+                    borderRadius: BorderRadius.circular(50)),
+                child: SizedBox(
+                  width: 250,
+                  height: 50,
+                  child: TextButton(
+                      child: const TextFrave(
+                          text: 'INICIAR', color: Colors.white, fontSize: 18),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {}
+                      }),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
