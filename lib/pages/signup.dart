@@ -1,18 +1,16 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
-import 'package:palacio_aseo/widgets/text_field_custom.dart';
 import 'package:palacio_aseo/pages/login.dart';
 import 'package:palacio_aseo/widgets/widgets.dart';
 
 import '../widgets/navigatorbar.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,170 +23,11 @@ class SignUp extends StatelessWidget {
           children: [HeaderSignUp(), LogoHeader()],
         ),
         _Titulo(),
-        _TextField(),
       ],
     ));
   }
-}
 
-class _TextField extends StatelessWidget {
-  File? image;
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      this.image = imageTemporary;
-    } on PlatformException catch (e) {
-      print('Error en subir la foto: $e');
-    }
-  }
-
-  TextEditingController _nombreController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _telefonoController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _repitpasswordController = TextEditingController();
-  TextEditingController _directionController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(height: 30),
-              const TextFrave(
-                  text: 'Seleccione foto de perfil',
-                  color: Colors.grey,
-                  fontSize: 18),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                child: const TextFrave(
-                    text: 'Subir Imagen', color: Colors.white, fontSize: 16),
-                onPressed: () => pickImage(),
-              ),
-              const SizedBox(height: 40),
-              TextFormField(
-                controller: _nombreController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.text,
-                validator: (val) =>
-                    val!.isEmpty ? "Introduce tu nombre!" : null,
-                decoration: InputDecoration(
-                    hintText: "Nombres Apellidos",
-                    labelText: "Nombre Completo",
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _emailController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.emailAddress,
-                validator: (val) =>
-                    val!.isEmpty ? "Introduce tu correo!" : null,
-                decoration: InputDecoration(
-                    hintText: "ejemplo@gmail.com",
-                    labelText: "Correo Electronico",
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _telefonoController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.number,
-                validator: (val) =>
-                    val!.isEmpty ? "Introduce tu telefono!" : null,
-                decoration: InputDecoration(
-                    hintText: "000 000 0000",
-                    labelText: "Numero de Telefono",
-                    prefixIcon: Icon(Icons.phone),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _passwordController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.number,
-                validator: (val) =>
-                    val!.isEmpty ? "Introduce tu contraseña!" : null,
-                decoration: InputDecoration(
-                    hintText: "********",
-                    labelText: "Contraseña",
-                    prefixIcon: Icon(Icons.lock_outline),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _repitpasswordController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.number,
-                validator: (val) =>
-                    val!.isEmpty ? "Repite tu contraseña!" : null,
-                decoration: InputDecoration(
-                    hintText: "********",
-                    labelText: "Confirmar Contraseña",
-                    prefixIcon: Icon(Icons.lock_outline),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _directionController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.number,
-                validator: (val) =>
-                    val!.isEmpty ? "Introduce tu direccion!" : null,
-                decoration: InputDecoration(
-                    hintText: "Cra 00 #0-0",
-                    labelText: "Direccion de residencia",
-                    prefixIcon: Icon(Icons.home),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 40),
-              Container(
-                margin: const EdgeInsets.all(25),
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(50, 121, 187, 1),
-                    borderRadius: BorderRadius.circular(50)),
-                child: SizedBox(
-                  width: 250,
-                  height: 50,
-                  child: TextButton(
-                      child: const TextFrave(
-                          text: 'Registrarse',
-                          color: Colors.white,
-                          fontSize: 18),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => NavBar()));
-                        }
-                      }),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  State<Signup> createState() => _SignupState();
 }
 
 class _Titulo extends StatelessWidget {
@@ -210,7 +49,7 @@ class _Titulo extends StatelessWidget {
           const TextFrave(text: '/', fontSize: 25, color: Colors.grey),
           TextButton(
               onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SignUp())),
+                  .push(MaterialPageRoute(builder: (_) => Signup())),
               child: const TextFrave(
                   text: 'Registrarse',
                   fontSize: 25,
@@ -219,5 +58,263 @@ class _Titulo extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _SignupState extends State<Signup> {
+  File? image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      this.image = imageTemporary;
+    } on PlatformException catch (e) {
+      print('Error en subir la foto: $e');
+    }
+  }
+
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordrController = TextEditingController();
+  TextEditingController _directionController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String passwordr = '';
+  bool isPasswordrVisible = true;
+  String password = '';
+  bool isPasswordVisible = true;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        padding: const EdgeInsets.only(top: 0),
+        physics: const BouncingScrollPhysics(),
+        children: [
+          Stack(
+            children: [HeaderSignUp(), LogoHeader()],
+          ),
+          _Titulo(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 30),
+                    const TextFrave(
+                        text: 'Seleccione foto de perfil',
+                        color: Colors.grey,
+                        fontSize: 18),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      child: const TextFrave(
+                          text: 'Subir Imagen',
+                          color: Colors.white,
+                          fontSize: 16),
+                      onPressed: () => pickImage(),
+                    ),
+                    const SizedBox(height: 40),
+                    TextFormField(
+                      controller: _nameController,
+                      autofocus: true,
+                      autocorrect: true,
+                      keyboardType: TextInputType.text,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateName,
+                      decoration: InputDecoration(
+                          hintText: "Nombres Apellidos",
+                          labelText: "Nombre Completo",
+                          prefixIcon: Icon(Icons.person),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16))),
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _emailController,
+                      autofocus: true,
+                      autocorrect: true,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateEmail,
+                      decoration: InputDecoration(
+                          hintText: "ejemplo@gmail.com",
+                          labelText: "Correo Electronico",
+                          prefixIcon: Icon(Icons.email),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16))),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _phoneController,
+                      autofocus: true,
+                      autocorrect: true,
+                      keyboardType: TextInputType.phone,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validatePhone,
+                      decoration: InputDecoration(
+                          hintText: "000 000 0000",
+                          labelText: "Numero de Telefono",
+                          prefixIcon: Icon(Icons.phone),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16))),
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _passwordController,
+                      autofocus: true,
+                      autocorrect: true,
+                      keyboardType: TextInputType.text,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: isPasswordVisible,
+                      validator: (val) =>
+                          val!.isEmpty ? "Introduce tu contraseña!" : null,
+                      decoration: InputDecoration(
+                          hintText: "********",
+                          labelText: "Contraseña",
+                          suffixIcon: IconButton(
+                            icon: isPasswordVisible
+                                ? Icon(Icons.visibility_off)
+                                : Icon(Icons.visibility),
+                            onPressed: () => setState(
+                                () => isPasswordVisible = !isPasswordVisible),
+                          ),
+                          prefixIcon: Icon(Icons.lock_outline),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16))),
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _passwordrController,
+                      autofocus: true,
+                      autocorrect: true,
+                      keyboardType: TextInputType.text,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: isPasswordrVisible,
+                      validator: validatePassword,
+                      decoration: InputDecoration(
+                          hintText: "********",
+                          labelText: "Confirmar Contraseña",
+                          suffixIcon: IconButton(
+                            icon: isPasswordrVisible
+                                ? Icon(Icons.visibility_off)
+                                : Icon(Icons.visibility),
+                            onPressed: () => setState(
+                                () => isPasswordrVisible = !isPasswordrVisible),
+                          ),
+                          prefixIcon: Icon(Icons.lock_outline),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16))),
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _directionController,
+                      autofocus: true,
+                      autocorrect: true,
+                      keyboardType: TextInputType.text,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (val) =>
+                          val!.isEmpty ? "Introduce tu direccion!" : null,
+                      decoration: InputDecoration(
+                          hintText: "Cra 00 #0-0",
+                          labelText: "Direccion de residencia",
+                          prefixIcon: Icon(Icons.home),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16))),
+                    ),
+                    const SizedBox(height: 40),
+                    Container(
+                      margin: const EdgeInsets.all(25),
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(50, 121, 187, 1),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: SizedBox(
+                        width: 250,
+                        height: 50,
+                        child: TextButton(
+                            child: const TextFrave(
+                                text: 'Registrarse',
+                                color: Colors.white,
+                                fontSize: 18),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                print("Nombre: ${_nameController.text}");
+                                print("Correo: ${_emailController.text}");
+                                print("Telefono: ${_phoneController.text}");
+                                print(
+                                    "Direccion: ${_directionController.text}");
+                                print(
+                                    "Contraseña: ${_passwordController.text}");
+                                _formKey.currentState!.reset();
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (_) => Login()));
+                              }
+                            }),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String? validateName(String? value) {
+    String pattern = r'(^[a-zA-Z ]*$)';
+    RegExp regExp = new RegExp(pattern);
+    if (value?.length == 0) {
+      return "Olvidaste el nombre!";
+    } else if (!regExp.hasMatch(value!)) {
+      return "El nombre debe de ser a-z y A-Z";
+    }
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    String pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = new RegExp(pattern);
+    if (value?.length == 0) {
+      return "Olvidaste el correo electronico!";
+    } else if (!regExp.hasMatch(value!)) {
+      return "Correo invalido";
+    } else {
+      return null;
+    }
+  }
+
+  String? validatePhone(String? value) {
+    String patttern = r'(^[0-9]*$)';
+    RegExp regExp = new RegExp(patttern);
+    if (value?.length == 0) {
+      return "Olvidaste el telefono!";
+    } else if (value?.length != 10) {
+      return "El numero debe tener 10 digitos";
+    } else if (!regExp.hasMatch(value!)) {
+      return "Solo numeros";
+    }
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    ("passwordr $value passsword ${_passwordController.text}");
+    if (value != _passwordController.text) {
+      return "Las contraseñas no coinciden";
+    }
+    return null;
+  }
+
+  save() {
+    if (_formKey.currentState!.validate()) {
+      print("Nombre ${_nameController.text}");
+      print("Telefono ${_phoneController.text}");
+      print("Correo ${_emailController.text}");
+      _formKey.currentState!.reset();
+    }
   }
 }

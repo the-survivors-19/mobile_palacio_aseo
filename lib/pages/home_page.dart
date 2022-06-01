@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 10),
                 Icon(Icons.access_time_rounded),
                 const SizedBox(height: 8),
-                Text("Acerca de Nosotros"),
+                Text("Nosotros"),
                 const SizedBox(height: 6),
               ],
             ),

@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/pages/home_page.dart';
+import 'package:palacio_aseo/pages/signup.dart';
 import 'package:palacio_aseo/widgets/navigatorbar.dart';
 import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/widgets/text_field_custom.dart';
-import 'package:palacio_aseo/pages/signup.dart';
 import 'package:palacio_aseo/widgets/widgets.dart';
 
 class Login extends StatelessWidget {
@@ -161,7 +161,10 @@ class _EmailAndPassword extends StatelessWidget {
                       child: const TextFrave(
                           text: 'INICIAR', color: Colors.white, fontSize: 18),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => NavBar()));
+                        }
                       }),
                 ),
               )
@@ -187,7 +190,7 @@ class _Titulo extends StatelessWidget {
           const TextFrave(text: ' /', fontSize: 25, color: Colors.grey),
           TextButton(
               onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SignUp())),
+                  .push(MaterialPageRoute(builder: (_) => Signup())),
               child: const TextFrave(
                   text: 'Registrarse',
                   fontSize: 18,
