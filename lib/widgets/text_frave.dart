@@ -21,7 +21,7 @@ class TextFrave extends StatelessWidget {
     this.maxLines = 1,
     this.overflow = TextOverflow.visible,
     this.textAlign = TextAlign.left,
-    this.letterSpacing,
+    this.letterSpacing, required style,
   }) : super(key: key);
   
   @override

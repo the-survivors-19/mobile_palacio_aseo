@@ -4,6 +4,7 @@ import 'package:palacio_aseo/pages/config_user.dart';
 import 'package:palacio_aseo/pages/home_page.dart';
 import 'package:palacio_aseo/pages/shopp_cart.dart';
 import 'package:palacio_aseo/widgets/drawer/drawer.dart';
+import 'package:palacio_aseo/widgets/text_frave.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -27,19 +28,25 @@ class _NavBarState extends State<NavBar> {
     final items = <Widget>[
       Icon(Icons.shopping_cart),
       Icon(Icons.home),
-      Icon(Icons.account_circle)
+      Icon(Icons.filter_vintage)
     ];
     return Scaffold(
       drawer: DrawerMenu(),
       appBar: AppBar(
-        title: Text("Palacio Del Aseo"),
+        title: TextFrave(
+          text: "Palacio Del Aseo",
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontSize: 18,
+          style: ('Roboto'),
+        ),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {},
           )
         ],
-        //backgroundColor: Colors.purple,
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

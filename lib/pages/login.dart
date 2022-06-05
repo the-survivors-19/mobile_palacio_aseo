@@ -1,7 +1,4 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
-import 'package:palacio_aseo/pages/home_page.dart';
 import 'package:palacio_aseo/pages/signup.dart';
 import 'package:palacio_aseo/widgets/navigatorbar.dart';
 import 'package:palacio_aseo/widgets/header.dart';
@@ -60,9 +57,11 @@ class _ForgotPassword extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(50)),
                             child: TextButton(
                               child: const TextFrave(
-                                  text: 'Enviar',
-                                  color: Colors.white,
-                                  fontSize: 18),
+                                text: 'Enviar',
+                                color: Colors.white,
+                                fontSize: 18,
+                                style: ('Roboto'),
+                              ),
                               onPressed: () {
                                 Navigator.pop(context);
                                 showDialog(
@@ -82,9 +81,11 @@ class _ForgotPassword extends StatelessWidget {
                                                     BorderRadius.circular(50)),
                                             child: TextButton(
                                               child: const TextFrave(
-                                                  text: 'Aceptar',
-                                                  color: Colors.white,
-                                                  fontSize: 18),
+                                                text: 'Aceptar',
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                style: ('Roboto'),
+                                              ),
                                               onPressed: () {
                                                 Navigator.pop(context);
                                               },
@@ -159,7 +160,11 @@ class _EmailAndPassword extends StatelessWidget {
                   height: 50,
                   child: TextButton(
                       child: const TextFrave(
-                          text: 'INICIAR', color: Colors.white, fontSize: 18),
+                        text: 'INICIAR',
+                        color: Colors.white,
+                        fontSize: 18,
+                        style: ('Roboto'),
+                      ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           Navigator.of(context).push(
@@ -184,18 +189,27 @@ class _Titulo extends StatelessWidget {
       child: Row(
         children: [
           const TextFrave(
-              text: 'Iniciar Sesion',
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
-          const TextFrave(text: ' /', fontSize: 25, color: Colors.grey),
+            text: 'Iniciar Sesion',
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            style: ('Roboto'),
+          ),
+          const TextFrave(
+            text: ' /',
+            fontSize: 25,
+            color: Colors.grey,
+            style: ('Roboto'),
+          ),
           TextButton(
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => Signup())),
               child: const TextFrave(
-                  text: 'Registrarse',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(158, 158, 158, 1)))
+                text: 'Registrarse',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(158, 158, 158, 1),
+                style: ('Roboto'),
+              ))
         ],
       ),
     );

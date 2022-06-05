@@ -6,7 +6,6 @@ import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/pages/login.dart';
 import 'package:palacio_aseo/widgets/widgets.dart';
-
 import '../widgets/navigatorbar.dart';
 
 class Signup extends StatefulWidget {
@@ -41,20 +40,29 @@ class _Titulo extends StatelessWidget {
             onPressed: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (_) => Login())),
             child: const TextFrave(
-                text: 'Iniciar Sesion',
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey),
+              text: 'Iniciar Sesion',
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+              style: ('Roboto'),
+            ),
           ),
-          const TextFrave(text: '/', fontSize: 25, color: Colors.grey),
+          const TextFrave(
+            text: '/',
+            fontSize: 25,
+            color: Colors.grey,
+            style: ('Roboto'),
+          ),
           TextButton(
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => Signup())),
               child: const TextFrave(
-                  text: 'Registrarse',
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black))
+                text: 'Registrarse',
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                style: ('Roboto'),
+              ))
         ],
       ),
     );
@@ -105,15 +113,19 @@ class _SignupState extends State<Signup> {
                   children: [
                     const SizedBox(height: 30),
                     const TextFrave(
-                        text: 'Seleccione foto de perfil',
-                        color: Colors.grey,
-                        fontSize: 18),
+                      text: 'Seleccione foto de perfil',
+                      color: Colors.grey,
+                      fontSize: 18,
+                      style: ('Roboto'),
+                    ),
                     const SizedBox(height: 10),
                     ElevatedButton(
                       child: const TextFrave(
-                          text: 'Subir Imagen',
-                          color: Colors.white,
-                          fontSize: 16),
+                        text: 'Subir Imagen',
+                        color: Colors.white,
+                        fontSize: 16,
+                        style: ('Roboto'),
+                      ),
                       onPressed: () => pickImage(),
                     ),
                     const SizedBox(height: 40),
@@ -235,9 +247,11 @@ class _SignupState extends State<Signup> {
                         height: 50,
                         child: TextButton(
                             child: const TextFrave(
-                                text: 'Registrarse',
-                                color: Colors.white,
-                                fontSize: 18),
+                              text: 'Registrarse',
+                              color: Colors.white,
+                              fontSize: 18,
+                              style: ('Roboto'),
+                            ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 print("Nombre: ${_nameController.text}");

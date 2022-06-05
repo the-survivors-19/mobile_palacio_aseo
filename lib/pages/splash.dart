@@ -11,7 +11,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    var d = const Duration(seconds: 2);
+    var d = const Duration(seconds: 3);
     Future.delayed(d, () {
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
         builder: (context) {
@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/fondoprueba.jpg"),
+                image: AssetImage("assets/Splash.gif"),
                 fit: BoxFit.cover,
               ),
             ),

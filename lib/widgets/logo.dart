@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 class LogoHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 10,
-      left: MediaQuery.of(context).size.width * 0.32,
+    return Center(
       child: Container(
-        height: 200,
-        width: 200,
+        height: 240,
+        width: 240,
         decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(50), boxShadow: [
-          BoxShadow(blurRadius: 60, color: Color.fromARGB(66, 121, 121, 121))
+            BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [
+          BoxShadow(blurRadius: 20, color: Color.fromRGBO(121, 121, 121, 0.259))
         ]),
         child: Image.asset('logopa.png'),
       ),

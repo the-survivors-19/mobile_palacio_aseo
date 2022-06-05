@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,50 +17,24 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(5),
       alignment: Alignment.topRight,
       child: Row(
-        children: [
-          const SizedBox(width: 40),
-          ElevatedButton(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const SizedBox(height: 10),
-                Icon(Icons.access_time_rounded),
-                const SizedBox(height: 8),
-                Text("Categorias"),
-                const SizedBox(height: 6),
-              ],
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Container(
+            height: 50,
+            child: OutlinedButton(
+              onPressed: () {},
+              child: Text('Categorias'),
             ),
-            onPressed: () {},
           ),
-          const SizedBox(width: 40),
-          ElevatedButton(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const SizedBox(height: 10),
-                Icon(Icons.access_time_rounded),
-                const SizedBox(height: 8),
-                Text("PQRS"),
-                const SizedBox(height: 6),
-              ],
+          Container(
+            height: 50,
+            child: OutlinedButton(
+              onPressed: () {},
+              child: Text('Categorias'),
             ),
-            onPressed: () {},
-          ),
-          const SizedBox(width: 40),
-          ElevatedButton(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const SizedBox(height: 10),
-                Icon(Icons.access_time_rounded),
-                const SizedBox(height: 8),
-                Text("Nosotros"),
-                const SizedBox(height: 6),
-              ],
-            ),
-            onPressed: () {},
-          ),
-          const SizedBox(width: 40),
+          )
         ],
       ),
     ));
