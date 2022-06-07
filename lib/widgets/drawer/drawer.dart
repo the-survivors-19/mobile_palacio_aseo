@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/pages/config_user.dart';
+import 'package:palacio_aseo/pages/login.dart';
 import 'package:palacio_aseo/widgets/navigatorbar.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -34,7 +35,7 @@ class DrawerMenu extends StatelessWidget {
                   const SizedBox(height: 6),
                   buildMenuItem(
                     text: 'Inicio',
-                    icon: Icons.home,
+                    icon: CupertinoIcons.house,
                     onClicked: () => selectedItem(context, 0),
                   ),
                   const SizedBox(height: 16),
@@ -46,28 +47,26 @@ class DrawerMenu extends StatelessWidget {
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'PQRS',
-                    icon: CupertinoIcons.exclamationmark_bubble,
+                    icon: CupertinoIcons.pencil_ellipsis_rectangle,
                     onClicked: () => selectedItem(context, 2),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Acerca de Nosotros',
-                    icon: Icons.update,
+                    icon: CupertinoIcons.question_square,
                     onClicked: () => selectedItem(context, 3),
                   ),
                   const SizedBox(height: 24),
                   Divider(color: Colors.white70),
                   const SizedBox(height: 24),
                   buildMenuItem(
-                    text: 'Plugins',
-                    icon: Icons.trending_neutral,
-                    onClicked: () => selectedItem(context, 4),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'Notifications',
-                    icon: Icons.notifications_outlined,
-                    onClicked: () => selectedItem(context, 5),
+                    text: 'Salir',
+                    icon: CupertinoIcons.square_arrow_left,
+                    onClicked: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                    ),
                   ),
                 ],
               ),
