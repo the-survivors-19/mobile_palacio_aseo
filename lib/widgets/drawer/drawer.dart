@@ -62,18 +62,15 @@ class DrawerMenu extends StatelessWidget {
                   buildMenuItem(
                     text: 'Salir',
                     icon: CupertinoIcons.square_arrow_left,
-                    onClicked: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Login(),
+                    onClicked: () => {Navigator.pushNamedAndRemoveUntil (context,'login',(route)=> false
+                    )
+                    }
                       ),
-                    ),
+          ])
                   ),
-                ],
-              ),
+                
+              ]),
             ),
-          ],
-        ),
-      ),
     );
   }
 

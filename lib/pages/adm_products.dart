@@ -4,7 +4,7 @@ import 'package:palacio_aseo/widgets/drawer/drawer.dart';
 import '../widgets/navigatorbar.dart';
 
 class AdmProduc extends StatelessWidget {
-  const AdmProduc({super.key});
+  const AdmProduc({key});
 
   @override
   Widget build(BuildContext context) {

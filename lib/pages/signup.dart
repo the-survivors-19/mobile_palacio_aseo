@@ -9,7 +9,7 @@ import 'package:palacio_aseo/widgets/widgets.dart';
 import '../widgets/navigatorbar.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({super.key});
+  const Signup({key});
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +307,7 @@ class _SignupState extends State<Signup> {
     RegExp regExp = new RegExp(patttern);
     if (value?.length == 0) {
       return "Olvidaste el telefono!";
-    } else if (value?.length != 10) {
+    } if (value?.length != 10) {
       return "El numero debe tener 10 digitos";
     } else if (!regExp.hasMatch(value!)) {
       return "Solo numeros";
