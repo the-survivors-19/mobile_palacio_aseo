@@ -31,6 +31,7 @@ class _NavBarState extends State<NavBar> {
       Icon(Icons.filter_vintage)
     ];
     return Scaffold(
+      backgroundColor: Color.fromRGBO(209, 222, 234, 1),
       drawer: DrawerMenu(),
       appBar: AppBar(
         title: TextFrave(

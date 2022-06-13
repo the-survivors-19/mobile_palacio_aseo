@@ -7,6 +7,7 @@ class ShoppCar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(209, 222, 234, 1),
       body: Center(
         child: Text(
           "SHOPPING CART",

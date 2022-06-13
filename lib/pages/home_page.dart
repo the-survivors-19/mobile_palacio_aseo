@@ -13,6 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(209, 222, 234, 1),
         body: Container(
       padding: const EdgeInsets.all(5),
       alignment: Alignment.topRight,
