@@ -11,7 +11,7 @@ class LogoHeader extends StatelessWidget {
             BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [
           BoxShadow(blurRadius: 20, color: Color.fromRGBO(121, 121, 121, 0.259))
         ]),
-        child: Image.asset('logopa.png'),
+        child: Image.asset('assets/logopa.png'),
       ),
     );
   }

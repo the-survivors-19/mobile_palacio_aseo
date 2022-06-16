@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/widgets/text_frave.dart';
-
 import '../widgets/navigatorbar.dart';
 import 'User/dataUser.dart';
 
@@ -17,8 +16,8 @@ class ConfigUser extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(30),
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: Column(
@@ -28,21 +27,20 @@ class ConfigUser extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(
-                            top: 2, left: 16, right: 16, bottom: 16),
+                        margin: EdgeInsets.all(6),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(96),
                           child: Image.network(
                             imgUser,
-                            height: 120,
-                            width: 120,
+                            height: 100,
+                            width: 100,
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.only(top: 10),
-                        margin: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(10),
                         child: Column(
                           children: const [
                             TextFrave(
@@ -65,8 +63,8 @@ class ConfigUser extends StatelessWidget {
                     ],
                   ),
                   Container(
-                      padding: EdgeInsets.all(20),
-                      margin: EdgeInsets.all(30),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(
                           color: Color.fromRGBO(159, 199, 235, 1),
                           borderRadius: BorderRadius.circular(10)),
