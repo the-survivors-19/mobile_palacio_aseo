@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(d, () {
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
         builder: (context) {
-          return NavBar();
+          return Login();
         },
       ), (route) => false);
     });

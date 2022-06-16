@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/pages/config_user.dart';
 import 'package:palacio_aseo/pages/login.dart';
 import 'package:palacio_aseo/widgets/navigatorbar.dart';
@@ -8,69 +9,65 @@ class DrawerMenu extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
   Widget build(BuildContext context) {
-    final name = 'Sarah Abs';
-    final email = 'sarah@abs.com';
+    final name = 'Paul Zuluaga';
+    final email = 'paul@gmail.com';
     final urlImage =
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
+        'https://www4.minijuegosgratis.com/v3/games/thumbnails/209606_1.jpg';
 
     return Drawer(
       child: Material(
         color: Color.fromRGBO(50, 121, 187, 1),
-        child: ListView(
-          children: <Widget>[
-            buildHeader(
-              urlImage: urlImage,
-              name: name,
-              email: email,
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ConfigUser(),
-              )),
-            ),
-            Container(
+        child: ListView(children: <Widget>[
+          buildHeader(
+            urlImage: urlImage,
+            name: name,
+            email: email,
+            onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => dataUser(),
+            )),
+          ),
+          Container(
               padding: padding,
-              child: Column(
-                children: [
-                  const SizedBox(height: 6),
-                  Divider(color: Colors.white70),
-                  const SizedBox(height: 6),
-                  buildMenuItem(
-                    text: 'Inicio',
-                    icon: CupertinoIcons.house,
-                    onClicked: () => selectedItem(context, 0),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'Categorias',
-                    icon: Icons.workspaces_outline,
-                    onClicked: () => selectedItem(context, 1),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'PQRS',
-                    icon: CupertinoIcons.pencil_ellipsis_rectangle,
-                    onClicked: () => selectedItem(context, 2),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'Acerca de Nosotros',
-                    icon: CupertinoIcons.question_square,
-                    onClicked: () => selectedItem(context, 3),
-                  ),
-                  const SizedBox(height: 24),
-                  Divider(color: Colors.white70),
-                  const SizedBox(height: 24),
-                  buildMenuItem(
+              child: Column(children: [
+                const SizedBox(height: 6),
+                Divider(color: Colors.white70),
+                const SizedBox(height: 6),
+                buildMenuItem(
+                  text: 'Inicio',
+                  icon: CupertinoIcons.house,
+                  onClicked: () => selectedItem(context, 0),
+                ),
+                const SizedBox(height: 16),
+                buildMenuItem(
+                  text: 'Categorias',
+                  icon: Icons.workspaces_outline,
+                  onClicked: () => selectedItem(context, 1),
+                ),
+                const SizedBox(height: 16),
+                buildMenuItem(
+                  text: 'PQRS',
+                  icon: CupertinoIcons.pencil_ellipsis_rectangle,
+                  onClicked: () => selectedItem(context, 2),
+                ),
+                const SizedBox(height: 16),
+                buildMenuItem(
+                  text: 'Acerca de Nosotros',
+                  icon: CupertinoIcons.question_square,
+                  onClicked: () => selectedItem(context, 3),
+                ),
+                const SizedBox(height: 24),
+                Divider(color: Colors.white70),
+                const SizedBox(height: 24),
+                buildMenuItem(
                     text: 'Salir',
                     icon: CupertinoIcons.square_arrow_left,
-                    onClicked: () => {Navigator.pushNamedAndRemoveUntil (context,'login',(route)=> false
-                    )
-                    }
-                      ),
-          ])
-                  ),
-                
-              ]),
-            ),
+                    onClicked: () => {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, 'login', (route) => false)
+                        }),
+              ])),
+        ]),
+      ),
     );
   }
 

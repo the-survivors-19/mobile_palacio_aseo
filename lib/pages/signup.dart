@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,7 +7,6 @@ import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/pages/login.dart';
 import 'package:palacio_aseo/widgets/widgets.dart';
-import '../widgets/navigatorbar.dart';
 
 class Signup extends StatefulWidget {
   const Signup({key});
@@ -70,16 +70,116 @@ class _Titulo extends StatelessWidget {
 }
 
 class _SignupState extends State<Signup> {
-  File? image;
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      this.image = imageTemporary;
-    } on PlatformException catch (e) {
-      print('Error en subir la foto: $e');
+  File? image = null;
+  final picker = ImagePicker();
+
+  Future pickImg(op) async {
+    var pickedFile;
+    if (op == 1) {
+      pickedFile = await picker.pickImage(source: ImageSource.camera);
+    } else {
+      pickedFile = await picker.pickImage(source: ImageSource.gallery);
     }
+    setState(() {
+      if (pickedFile != null) {
+        image = File(pickedFile.path);
+      } else {
+        print('No seleccionaste una foto');
+      }
+    });
+    Navigator.of(context).pop();
+  }
+
+  options(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.all(10),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      pickImg(1);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom:
+                                  BorderSide(width: 4, color: Colors.grey))),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFrave(
+                              text: 'Tomar una foto',
+                              color: Colors.grey,
+                              fontSize: 18,
+                              style: ('Roboto'),
+                            ),
+                          ),
+                          Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      pickImg(2);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFrave(
+                              text: 'Selecciona una foto',
+                              color: Colors.grey,
+                              fontSize: 18,
+                              style: ('Roboto'),
+                            ),
+                          ),
+                          Icon(
+                            Icons.image,
+                            color: Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFrave(
+                              text: 'Cancelar',
+                              color: Colors.grey,
+                              fontSize: 18,
+                              style: ('Roboto'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   TextEditingController _nameController = TextEditingController();
@@ -126,8 +226,12 @@ class _SignupState extends State<Signup> {
                         fontSize: 16,
                         style: ('Roboto'),
                       ),
-                      onPressed: () => pickImage(),
+                      onPressed: () {
+                        options(context);
+                      },
                     ),
+                    const SizedBox(height: 40),
+                    image != null ? Image.file(image!) : Center(),
                     const SizedBox(height: 40),
                     TextFormField(
                       controller: _nameController,
@@ -307,7 +411,8 @@ class _SignupState extends State<Signup> {
     RegExp regExp = new RegExp(patttern);
     if (value?.length == 0) {
       return "Olvidaste el telefono!";
-    } if (value?.length != 10) {
+    }
+    if (value?.length != 10) {
       return "El numero debe tener 10 digitos";
     } else if (!regExp.hasMatch(value!)) {
       return "Solo numeros";

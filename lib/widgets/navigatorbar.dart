@@ -28,7 +28,7 @@ class _NavBarState extends State<NavBar> {
     final items = <Widget>[
       Icon(Icons.shopping_cart),
       Icon(Icons.home),
-      Icon(Icons.filter_vintage)
+      Icon(Icons.settings)
     ];
     return Scaffold(
       backgroundColor: Color.fromRGBO(209, 222, 234, 1),

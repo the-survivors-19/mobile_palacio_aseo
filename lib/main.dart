@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:palacio_aseo/helpers/dependency_injection.dart';
 import 'package:palacio_aseo/pages/login.dart';
 import 'package:palacio_aseo/pages/splash.dart';
-import 'package:palacio_aseo/widgets/navigatorbar.dart';
 
 void main() {
   DependencyInjection.initialize();
