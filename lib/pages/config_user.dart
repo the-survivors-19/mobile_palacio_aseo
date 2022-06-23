@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/widgets/text_frave.dart';
-import '../widgets/navigatorbar.dart';
-import 'User/dataUser.dart';
+
+import '../widgets/drawer/drawer.dart';
 
 class ConfigUser extends StatelessWidget {
   const ConfigUser({key});
@@ -13,6 +14,37 @@ class ConfigUser extends StatelessWidget {
         'https://www4.minijuegosgratis.com/v3/games/thumbnails/209606_1.jpg';
     return Scaffold(
       backgroundColor: Color.fromRGBO(209, 222, 234, 1),
+      drawer: DrawerMenu(),
+      appBar: AppBar(
+        title: TextFrave(
+          text: "Palacio Del Aseo",
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontSize: 18,
+          style: ('Roboto'),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          )
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromRGBO(50, 121, 187, 1),
+                Color.fromARGB(66, 121, 121, 121)
+              ],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+            ),
+          ),
+        ),
+        elevation: 20,
+        titleSpacing: 20,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -127,12 +159,12 @@ class ConfigUser extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => dataUser(),
+          builder: (context) => Datauser(),
         ));
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => NavBar(),
+          builder: (context) => Datauser(),
         ));
         break;
     }

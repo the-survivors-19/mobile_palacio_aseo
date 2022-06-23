@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/helpers/dependency_injection.dart';
+import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/pages/login.dart';
 import 'package:palacio_aseo/pages/splash.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "splash": (_) => SplashScreen(),
         "login": (_) => Login(),
+        "dataUser": (_) => Datauser(),
       },
     );
   }

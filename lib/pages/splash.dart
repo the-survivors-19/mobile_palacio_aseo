@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/pages/login.dart';
-import 'package:palacio_aseo/widgets/navigatorbar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

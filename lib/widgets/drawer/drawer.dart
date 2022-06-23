@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/pages/config_user.dart';
-import 'package:palacio_aseo/pages/login.dart';
-import 'package:palacio_aseo/widgets/navigatorbar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:palacio_aseo/pages/crud/crud%20provedores/provcrud.dart';
 
 class DrawerMenu extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -23,7 +22,7 @@ class DrawerMenu extends StatelessWidget {
             name: name,
             email: email,
             onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => dataUser(),
+              builder: (context) => Datauser(),
             )),
           ),
           Container(
@@ -33,13 +32,13 @@ class DrawerMenu extends StatelessWidget {
                 Divider(color: Colors.white70),
                 const SizedBox(height: 6),
                 buildMenuItem(
-                  text: 'Inicio',
+                  text: 'Home',
                   icon: CupertinoIcons.house,
                   onClicked: () => selectedItem(context, 0),
                 ),
                 const SizedBox(height: 16),
                 buildMenuItem(
-                  text: 'Categorias',
+                  text: 'Provedores',
                   icon: Icons.workspaces_outline,
                   onClicked: () => selectedItem(context, 1),
                 ),
@@ -126,12 +125,12 @@ class DrawerMenu extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => NavBar(),
+          builder: (context) => ConfigUser(),
         ));
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => NavBar(),
+          builder: (context) => crudProvedores("Mis Contactos"),
         ));
         break;
     }
