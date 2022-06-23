@@ -18,7 +18,7 @@ class _HomeProv extends State<crudProvedores> {
     Provider(
         name: 'Petro Presidente',
         email: 'petrodios@gmail.com',
-        phone: '302 454 25 93',
+        phone: '3024542593',
         dutym: 'Colombia',
         address: 'Olimpo'),
     Provider(
@@ -30,13 +30,13 @@ class _HomeProv extends State<crudProvedores> {
     Provider(
         name: 'Fico Perico',
         email: 'elsocio@gmail.com',
-        phone: '301 441 36 98',
+        phone: '3014413698',
         dutym: 'Barrios Bajos',
         address: 'Calle #Bronx'),
     Provider(
       name: 'Jhon Milton',
       email: 'quienteconoce@gmail.com',
-      phone: '310 789 90 62',
+      phone: '3107899062',
       dutym: 'Nose',
       address: 'Cra # ????',
     )
