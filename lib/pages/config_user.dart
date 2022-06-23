@@ -4,6 +4,8 @@ import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/widgets/text_frave.dart';
 
 import '../widgets/drawer/drawer.dart';
+import 'crud/crud categorias/categcrud.dart';
+import 'crud/crud provedores/provcrud.dart';
 
 class ConfigUser extends StatelessWidget {
   const ConfigUser({key});
@@ -112,21 +114,15 @@ class ConfigUser extends StatelessWidget {
                             ),
                             const SizedBox(height: 10),
                             buildMenuItem(
-                              text: 'Mis Comentarios',
-                              icon: CupertinoIcons.ellipses_bubble_fill,
+                              text: 'Provedores',
+                              icon: Icons.workspaces_outline,
                               onClicked: () => selectedItem(context, 1),
                             ),
                             const SizedBox(height: 10),
                             buildMenuItem(
-                              text: ' Mis PQRS',
-                              icon: CupertinoIcons.news_solid,
+                              text: 'Categorias',
+                              icon: CupertinoIcons.question_square,
                               onClicked: () => selectedItem(context, 2),
-                            ),
-                            const SizedBox(height: 10),
-                            buildMenuItem(
-                              text: 'Mis Compras',
-                              icon: CupertinoIcons.money_dollar_circle_fill,
-                              onClicked: () => selectedItem(context, 3),
                             ),
                             const SizedBox(height: 6),
                           ])),
@@ -164,7 +160,12 @@ class ConfigUser extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Datauser(),
+          builder: (context) => crudProvedores("Provedores"),
+        ));
+        break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => crudCateg("Categorias"),
         ));
         break;
     }

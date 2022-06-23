@@ -50,13 +50,7 @@ class DrawerMenu extends StatelessWidget {
                   icon: CupertinoIcons.question_square,
                   onClicked: () => selectedItem(context, 2),
                 ),
-                const SizedBox(height: 16),
-                buildMenuItem(
-                  text: 'Categorias',
-                  icon: CupertinoIcons.pencil_circle_fill,
-                  onClicked: () => selectedItem(context, 3),
-                ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 6),
                 Divider(color: Colors.white70),
                 const SizedBox(height: 24),
                 buildMenuItem(
@@ -137,7 +131,7 @@ class DrawerMenu extends StatelessWidget {
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => crudCateg("Categods"),
+          builder: (context) => crudCateg("Categorias"),
         ));
         break;
     }

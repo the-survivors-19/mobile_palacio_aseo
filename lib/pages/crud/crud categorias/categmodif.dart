@@ -1,7 +1,5 @@
 import 'package:palacio_aseo/pages/crud/crud%20categorias/categcrud.dart';
 import 'package:flutter/material.dart';
-import 'package:palacio_aseo/pages/crud/crud%20categorias/textbox.dart';
-
 import '../../../widgets/text_frave.dart';
 
 class ModifyCateg extends StatefulWidget {
@@ -57,7 +55,21 @@ class _ModifyContact extends State<ModifyCateg> {
       ),
       body: ListView(
         children: [
-          TextBox(_descriptionController, "Descripcion: "),
+          const SizedBox(height: 100),
+          TextFormField(
+            controller: _descriptionController,
+            autofocus: true,
+            autocorrect: true,
+            keyboardType: TextInputType.text,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: validateName,
+            decoration: InputDecoration(
+                labelText: "Descripcion: ",
+                prefixIcon: Icon(Icons.app_registration_sharp),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16))),
+          ),
+          const SizedBox(height: 50),
           ElevatedButton(
               onPressed: () {
                 String name = _descriptionController.text;
@@ -73,5 +85,16 @@ class _ModifyContact extends State<ModifyCateg> {
         ],
       ),
     );
+  }
+
+  String? validateName(String? value) {
+    String pattern = r'(^[a-zA-Z ]*$)';
+    RegExp regExp = new RegExp(pattern);
+    if (value?.length == 0) {
+      return "Olvidaste el nombre!";
+    } else if (!regExp.hasMatch(value!)) {
+      return "El nombre debe de ser a-z y A-Z";
+    }
+    return null;
   }
 }
