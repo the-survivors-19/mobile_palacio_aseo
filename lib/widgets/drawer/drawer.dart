@@ -4,6 +4,8 @@ import 'package:palacio_aseo/pages/config_user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:palacio_aseo/pages/crud/crud%20provedores/provcrud.dart';
 
+import '../../pages/crud/crud categorias/categcrud.dart';
+
 class DrawerMenu extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
@@ -32,8 +34,8 @@ class DrawerMenu extends StatelessWidget {
                 Divider(color: Colors.white70),
                 const SizedBox(height: 6),
                 buildMenuItem(
-                  text: 'Home',
-                  icon: CupertinoIcons.house,
+                  text: 'Perfil',
+                  icon: CupertinoIcons.person,
                   onClicked: () => selectedItem(context, 0),
                 ),
                 const SizedBox(height: 16),
@@ -44,14 +46,14 @@ class DrawerMenu extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 buildMenuItem(
-                  text: 'PQRS',
-                  icon: CupertinoIcons.pencil_ellipsis_rectangle,
+                  text: 'Categorias',
+                  icon: CupertinoIcons.question_square,
                   onClicked: () => selectedItem(context, 2),
                 ),
                 const SizedBox(height: 16),
                 buildMenuItem(
-                  text: 'Acerca de Nosotros',
-                  icon: CupertinoIcons.question_square,
+                  text: 'Categorias',
+                  icon: CupertinoIcons.pencil_circle_fill,
                   onClicked: () => selectedItem(context, 3),
                 ),
                 const SizedBox(height: 24),
@@ -130,7 +132,12 @@ class DrawerMenu extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => crudProvedores("Mis Contactos"),
+          builder: (context) => crudProvedores("Provedores"),
+        ));
+        break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => crudCateg("Categods"),
         ));
         break;
     }
