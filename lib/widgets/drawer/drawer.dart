@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:palacio_aseo/models/user_response.dart';
 import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/pages/config_user.dart';
 import 'package:flutter/cupertino.dart';
@@ -117,11 +118,21 @@ class DrawerMenu extends StatelessWidget {
 
   void selectedItem(BuildContext context, int index) {
     Navigator.of(context).pop();
-
+    UserResponse user = UserResponse(
+      id: -1,
+      fullName: '',
+      phone: '',
+      address: '',
+      email: '',
+      photo: '',
+    );
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ConfigUser(),
+          builder: (context) => ConfigUser(
+            token: '',
+            user: user,
+          ),
         ));
         break;
       case 1:

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:palacio_aseo/models/user_response.dart';
 import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/widgets/text_frave.dart';
 
@@ -8,7 +9,14 @@ import 'crud/crud categorias/categcrud.dart';
 import 'crud/crud provedores/provcrud.dart';
 
 class ConfigUser extends StatelessWidget {
-  const ConfigUser({key});
+  String token;
+  UserResponse user;
+
+  ConfigUser({
+    Key? key,
+    required this.token,
+    required this.user,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +84,7 @@ class ConfigUser extends StatelessWidget {
                         padding: EdgeInsets.only(top: 10),
                         margin: EdgeInsets.all(10),
                         child: Column(
-                          children: const [
+                          children: [
                             TextFrave(
                               text: 'BIENVENIDO!',
                               color: Color.fromARGB(255, 0, 0, 0),
@@ -85,7 +93,7 @@ class ConfigUser extends StatelessWidget {
                             ),
                             SizedBox(height: 16),
                             TextFrave(
-                              text: "Paul Zuluaga",
+                              text: user.fullName,
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 0, 0, 0),
                               fontSize: 18,

@@ -1,10 +1,15 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:palacio_aseo/models/user_response.dart';
 import 'package:palacio_aseo/pages/config_user.dart';
 import 'package:palacio_aseo/pages/signup.dart';
 import 'package:palacio_aseo/widgets/header.dart';
 import 'package:palacio_aseo/widgets/logo.dart';
 import 'package:palacio_aseo/widgets/text_field_custom.dart';
 import 'package:palacio_aseo/widgets/widgets.dart';
+import 'package:palacio_aseo/api/authentication_api.dart';
 
 class Login extends StatefulWidget {
   const Login({key});
@@ -54,6 +59,8 @@ class _LoginPState extends State<Login> {
   bool isPasswordVisible = true;
   @override
   Widget build(BuildContext context) {
+    final _authenticationApi = GetIt.instance<AuthenticationApi>();
+
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.only(top: 0),
@@ -124,14 +131,60 @@ class _LoginPState extends State<Login> {
                               fontSize: 18,
                               style: ('Roboto'),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                print("Correo: ${_emailController.text}");
-                                print(
-                                    "Contraseña: ${_passwordController.text}");
-                                _formKey.currentState!.reset();
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => ConfigUser()));
+                                final res = await _authenticationApi.login(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                );
+                                if (res.error != null) {
+                                  final message = res.error?.message ?? 'Error';
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Login'),
+                                        content: SingleChildScrollView(
+                                          child: ListBody(
+                                            children: <Widget>[Text(message)],
+                                          ),
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: Text('Aceptar'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  String token = res.data?.token ?? '';
+                                  int id = res.data?.user.id ?? -1;
+                                  String fullName =
+                                      res.data?.user.fullName ?? '';
+                                  String phone = res.data?.user.phone ?? '';
+                                  String address = res.data?.user.address ?? '';
+                                  String email = res.data?.user.email ?? '';
+                                  String photo = res.data?.user.photo ?? '';
+                                  UserResponse user = UserResponse(
+                                      id: id,
+                                      fullName: fullName,
+                                      phone: phone,
+                                      address: address,
+                                      email: email,
+                                      photo: photo);
+                                  print("Correo: ${_emailController.text}");
+                                  print(
+                                      "Contraseña: ${_passwordController.text}");
+                                  _formKey.currentState!.reset();
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => ConfigUser(
+                                          token: token, user: user)));
+                                }
                               }
                             }),
                       ),

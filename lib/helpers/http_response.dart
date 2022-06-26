@@ -1,22 +1,23 @@
-class HttpResponse {
-  final dynamic data;
+class HttpResponse<T> {
+  final T? data;
   final HttpError? error;
 
-  HttpResponse({
+  HttpResponse(
     this.data,
     this.error,
-  });
+  );
 
-  static HttpResponse success(dynamic data) => HttpResponse(data: data);
-  static HttpResponse fail({
+  static HttpResponse<T> success<T>(T data) => HttpResponse(data, null);
+  static HttpResponse<T> fail<T>({
     required int statusCode,
-    required String msg,
+    required String message,
     required dynamic data,
   }) =>
       HttpResponse(
-        error: HttpError(
+        null,
+        HttpError(
           statusCode: statusCode,
-          msg: msg,
+          message: message,
           data: data,
         ),
       );
@@ -24,12 +25,12 @@ class HttpResponse {
 
 class HttpError {
   final int statusCode;
-  final String msg;
+  final String message;
   final dynamic data;
 
   HttpError({
     required this.statusCode,
-    required this.msg,
+    required this.message,
     required this.data,
   });
 }
