@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:palacio_aseo/pages/crud/crud%20provedores/messconfirm.dart';
-import 'package:palacio_aseo/pages/crud/crud%20provedores/provmodif.dart';
-import 'package:palacio_aseo/pages/crud/crud%20provedores/provregister.dart';
+import 'package:palacio_aseo/pages/crud/crud%20usuarios/messconfirm.dart';
+import 'package:palacio_aseo/pages/crud/crud%20usuarios/usuamodif.dart';
+import 'package:palacio_aseo/pages/crud/crud%20usuarios/usuaregister.dart';
 
 import '../../../widgets/drawer/drawer.dart';
 import '../../../widgets/text_frave.dart';
 
-class crudProvedores extends StatefulWidget {
+class crudUsuarios extends StatefulWidget {
   final String _title;
-  crudProvedores(this._title);
+  crudUsuarios(this._title);
   @override
-  State<StatefulWidget> createState() => _HomeProv();
+  State<StatefulWidget> createState() => _HomeUsua();
 }
 
-class _HomeProv extends State<crudProvedores> {
-  List<Provider> providers = [
-    Provider(
-        name: 'Petro Presidente',
-        email: 'petrodios@gmail.com',
+class _HomeUsua extends State<crudUsuarios> {
+  List<User> usuarios = [
+    User(
+        name: 'Juan Martinez',
+        email: 'juanito@gmail.com',
         phone: '3024542593',
-        dutym: 'Colombia',
-        address: 'Olimpo'),
+        password: 'contraseña',
+        address: 'Cra 4 #121 - 2'),
   ];
 
   @override
@@ -30,7 +30,7 @@ class _HomeProv extends State<crudProvedores> {
       drawer: DrawerMenu(),
       appBar: AppBar(
         title: TextFrave(
-          text: "Provedores",
+          text: "Usuarios",
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 18,
@@ -59,7 +59,7 @@ class _HomeProv extends State<crudProvedores> {
         titleSpacing: 20,
       ),
       body: ListView.builder(
-        itemCount: providers.length,
+        itemCount: usuarios.length,
         itemBuilder: (context, index) {
           return Container(
             padding: EdgeInsets.all(5),
@@ -68,28 +68,28 @@ class _HomeProv extends State<crudProvedores> {
                 Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => ModifyContact(providers[index])))
-                    .then((newProvider) {
-                  if (newProvider != null) {
+                            builder: (_) => ModifyUser(usuarios[index])))
+                    .then((newUser) {
+                  if (newUser != null) {
                     setState(() {
-                      providers.removeAt(index);
+                      usuarios.removeAt(index);
 
-                      providers.insert(index, newProvider);
+                      usuarios.insert(index, newUser);
 
                       messageResponse(
-                          context, newProvider.name + " ha sido modificado!");
+                          context, newUser.name + " ha sido modificado!");
                     });
                   }
                 });
               },
               onLongPress: () {
-                removeClient(context, providers[index]);
+                removeClient(context, usuarios[index]);
               },
-              title: Text(providers[index].name),
+              title: Text(usuarios[index].name),
               subtitle:
-                  Text(providers[index].phone + " - " + providers[index].dutym),
+                  Text(usuarios[index].email + "\n" + usuarios[index].phone),
               leading: CircleAvatar(
-                child: Text(providers[index].name.substring(0, 1)),
+                child: Text(usuarios[index].name.substring(0, 1)),
               ),
               trailing: Icon(
                 Icons.edit,
@@ -104,18 +104,18 @@ class _HomeProv extends State<crudProvedores> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromRGBO(50, 121, 187, 1),
         onPressed: () {
-          Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => RegisterProvider()))
+          Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => RegisterUser()))
               .then((newContact) {
             if (newContact != null) {
               setState(() {
-                providers.add(newContact);
+                usuarios.add(newContact);
                 messageResponse(context, newContact.name + " ha sido guardado");
               });
             }
           });
         },
-        tooltip: "Agregar Provedor",
+        tooltip: "Agregar Usuario",
         child: Icon(
           Icons.person_add,
           color: Colors.white,
@@ -124,17 +124,17 @@ class _HomeProv extends State<crudProvedores> {
     );
   }
 
-  removeClient(BuildContext context, Provider client) {
+  removeClient(BuildContext context, User client) {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
-              title: Text("Eliminar Provedor"),
+              title: Text("Eliminar Usuario"),
               content: Text("Esta seguro de eliminar a " + client.name + "?"),
               actions: [
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      this.providers.remove(client);
+                      this.usuarios.remove(client);
                       Navigator.pop(context);
                     });
                   },
@@ -157,12 +157,12 @@ class _HomeProv extends State<crudProvedores> {
   }
 }
 
-class Provider {
+class User {
   var name;
   var email;
   var phone;
-  var dutym;
+  var password;
   var address;
 
-  Provider({this.name, this.email, this.phone, this.dutym, this.address});
+  User({this.name, this.email, this.phone, this.password, this.address});
 }

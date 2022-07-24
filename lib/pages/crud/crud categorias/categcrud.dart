@@ -66,35 +66,41 @@ class _HomeCateg extends State<crudCateg> {
       body: ListView.builder(
         itemCount: categories.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            onTap: () {
-              Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => ModifyCateg(categories[index])))
-                  .then((newCategorie) {
-                if (newCategorie != null) {
-                  setState(() {
-                    categories.removeAt(index);
+          return Container(
+            padding: EdgeInsets.all(5),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => ModifyCateg(categories[index])))
+                    .then((newCategorie) {
+                  if (newCategorie != null) {
+                    setState(() {
+                      categories.removeAt(index);
 
-                    categories.insert(index, newCategorie);
+                      categories.insert(index, newCategorie);
 
-                    messageResponse(context,
-                        newCategorie.description + " ha sido modificada!");
-                  });
-                }
-              });
-            },
-            onLongPress: () {
-              removeClient(context, categories[index]);
-            },
-            title: Text(categories[index].description),
-            leading: CircleAvatar(
-              child: Icon(Icons.category),
-            ),
-            trailing: Icon(
-              Icons.edit,
-              color: Color.fromRGBO(50, 121, 187, 1),
+                      messageResponse(context,
+                          newCategorie.description + " ha sido modificada!");
+                    });
+                  }
+                });
+              },
+              onLongPress: () {
+                removeClient(context, categories[index]);
+              },
+              title: Text("    " + categories[index].description),
+              leading: CircleAvatar(
+                child: Icon(Icons.category),
+              ),
+              trailing: Icon(
+                Icons.edit,
+                color: Color.fromRGBO(50, 121, 187, 1),
+              ),
+              subtitle: Text(""),
+              isThreeLine: true,
+              tileColor: Color.fromARGB(255, 255, 255, 255),
             ),
           );
         },

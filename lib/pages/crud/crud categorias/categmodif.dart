@@ -10,6 +10,7 @@ class ModifyCateg extends StatefulWidget {
 }
 
 class _ModifyContact extends State<ModifyCateg> {
+  final _formKey = GlobalKey<FormState>();
   TextEditingController _descriptionController = TextEditingController();
 
   @override
@@ -21,6 +22,8 @@ class _ModifyContact extends State<ModifyCateg> {
 
   @override
   Widget build(BuildContext context) {
+    final imgUser =
+        'https://www.expovirtual.lat/storage/uploads/categorias/4jeSicFUIB.png';
     return Scaffold(
       backgroundColor: Color.fromRGBO(209, 222, 234, 1),
       appBar: AppBar(
@@ -32,12 +35,6 @@ class _ModifyContact extends State<ModifyCateg> {
           style: ('Roboto'),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          )
-        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -53,36 +50,60 @@ class _ModifyContact extends State<ModifyCateg> {
         elevation: 20,
         titleSpacing: 20,
       ),
-      body: ListView(
-        children: [
-          const SizedBox(height: 100),
-          TextFormField(
-            controller: _descriptionController,
-            autofocus: true,
-            autocorrect: true,
-            keyboardType: TextInputType.text,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: validateName,
-            decoration: InputDecoration(
-                labelText: "Descripcion: ",
-                prefixIcon: Icon(Icons.app_registration_sharp),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16))),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(6),
+                  child: ClipRRect(
+                    child: Image.network(
+                      imgUser,
+                      height: 280,
+                      width: 280,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _descriptionController,
+                        autofocus: true,
+                        autocorrect: true,
+                        keyboardType: TextInputType.text,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: validateName,
+                        decoration: InputDecoration(
+                            labelText: "Descripcion: ",
+                            prefixIcon: Icon(Icons.app_registration_sharp),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                      ),
+                      const SizedBox(height: 50),
+                      ElevatedButton(
+                          onPressed: () {
+                            String name = _descriptionController.text;
+                            if (name.isNotEmpty) {
+                              Navigator.pop(
+                                  context,
+                                  new Categ(
+                                    description: name,
+                                  ));
+                            }
+                          },
+                          child: Text("Guardar Categoria")),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 50),
-          ElevatedButton(
-              onPressed: () {
-                String name = _descriptionController.text;
-                if (name.isNotEmpty) {
-                  Navigator.pop(
-                      context,
-                      new Categ(
-                        description: name,
-                      ));
-                }
-              },
-              child: Text("Guardar Categoria")),
-        ],
+        ),
       ),
     );
   }

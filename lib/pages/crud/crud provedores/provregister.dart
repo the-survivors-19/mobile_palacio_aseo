@@ -28,6 +28,7 @@ class _RegisterContact extends State<RegisterProvider> {
 
   @override
   Widget build(BuildContext context) {
+    final imgProv = 'https://www.qbd.lat/wp-content/uploads/proveedores.png';
     return Scaffold(
       backgroundColor: Color.fromRGBO(209, 222, 234, 1),
       appBar: AppBar(
@@ -39,12 +40,6 @@ class _RegisterContact extends State<RegisterProvider> {
           style: ('Roboto'),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          )
-        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -60,107 +55,126 @@ class _RegisterContact extends State<RegisterProvider> {
         elevation: 20,
         titleSpacing: 20,
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-              TextFormField(
-                controller: _nameController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.text,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: validateName,
-                decoration: InputDecoration(
-                    labelText: "Nombre ",
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _emailController,
-                autofocus: true,
-                autocorrect: true,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: validateEmail,
-                decoration: InputDecoration(
-                    labelText: "Correo Electronico ",
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _phoneController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.phone,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: validatePhone,
-                decoration: InputDecoration(
-                    hintText: "000 000 0000",
-                    labelText: "Numero de Telefono",
-                    prefixIcon: Icon(Icons.phone),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _addressController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.text,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (val) =>
-                    val!.isEmpty ? "Introduce tu direccion!" : null,
-                decoration: InputDecoration(
-                    hintText: "Cra 00 #0-0",
-                    labelText: "Direccion de residencia",
-                    prefixIcon: Icon(Icons.home),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _dutymController,
-                autofocus: true,
-                autocorrect: true,
-                keyboardType: TextInputType.text,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: validateDuty,
-                decoration: InputDecoration(
-                    labelText: "Gerente de Servicio ",
-                    prefixIcon: Icon(Icons.badge_rounded),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () {
-                    String name = _nameController.text;
-                    String email = _emailController.text;
-                    String phone = _phoneController.text;
-                    String dutym = _dutymController.text;
-                    String address = _addressController.text;
-                    if (_formKey.currentState!.validate()) {
-                      print("Correo: ${_nameController.text}");
-                      _formKey.currentState!.reset();
-                      Navigator.pop(
-                          context,
-                          new Provider(
-                              name: name,
-                              email: email,
-                              phone: phone,
-                              dutym: dutym,
-                              address: address));
-                    }
-                  },
-                  child: Text("Guardar Provedor")),
-            ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                Container(
+                  margin: EdgeInsets.all(6),
+                  child: ClipRRect(
+                    child: Image.network(
+                      imgProv,
+                      height: 230,
+                      width: 230,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _nameController,
+                        autofocus: true,
+                        autocorrect: true,
+                        keyboardType: TextInputType.text,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: validateName,
+                        decoration: InputDecoration(
+                            labelText: "Nombre ",
+                            prefixIcon: Icon(Icons.person),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _emailController,
+                        autofocus: true,
+                        autocorrect: true,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: validateEmail,
+                        decoration: InputDecoration(
+                            labelText: "Correo Electronico ",
+                            prefixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _phoneController,
+                        autofocus: true,
+                        autocorrect: true,
+                        keyboardType: TextInputType.phone,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: validatePhone,
+                        decoration: InputDecoration(
+                            hintText: "000 000 0000",
+                            labelText: "Numero de Telefono",
+                            prefixIcon: Icon(Icons.phone),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _addressController,
+                        autofocus: true,
+                        autocorrect: true,
+                        keyboardType: TextInputType.text,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (val) =>
+                            val!.isEmpty ? "Introduce tu direccion!" : null,
+                        decoration: InputDecoration(
+                            hintText: "Cra 00 #0-0",
+                            labelText: "Direccion de residencia",
+                            prefixIcon: Icon(Icons.home),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _dutymController,
+                        autofocus: true,
+                        autocorrect: true,
+                        keyboardType: TextInputType.text,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: validateDuty,
+                        decoration: InputDecoration(
+                            labelText: "Gerente de Servicio ",
+                            prefixIcon: Icon(Icons.badge_rounded),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                          onPressed: () {
+                            String name = _nameController.text;
+                            String email = _emailController.text;
+                            String phone = _phoneController.text;
+                            String dutym = _dutymController.text;
+                            String address = _addressController.text;
+                            if (_formKey.currentState!.validate()) {
+                              print("Correo: ${_nameController.text}");
+                              _formKey.currentState!.reset();
+                              Navigator.pop(
+                                  context,
+                                  new Provider(
+                                      name: name,
+                                      email: email,
+                                      phone: phone,
+                                      dutym: dutym,
+                                      address: address));
+                            }
+                          },
+                          child: Text("Guardar Provedor")),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

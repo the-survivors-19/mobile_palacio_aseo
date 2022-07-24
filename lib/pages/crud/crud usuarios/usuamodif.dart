@@ -1,43 +1,46 @@
-import 'package:palacio_aseo/pages/crud/crud%20provedores/provcrud.dart';
+import 'package:palacio_aseo/pages/crud/crud%20usuarios/usuacrud.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/text_frave.dart';
 
-class ModifyContact extends StatefulWidget {
-  final Provider _client;
-  ModifyContact(this._client);
+class ModifyUser extends StatefulWidget {
+  final User _client;
+  ModifyUser(this._client);
   @override
   State<StatefulWidget> createState() => _ModifyContact();
 }
 
-class _ModifyContact extends State<ModifyContact> {
+class _ModifyContact extends State<ModifyUser> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _dutymController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _hasMinLength(String value) {
+    return value.isNotEmpty && value.length >= 8;
+  }
 
   @override
   void initState() {
-    Provider c = widget._client;
+    User c = widget._client;
     _nameController = new TextEditingController(text: c.name);
     _emailController = new TextEditingController(text: c.email);
     _phoneController = new TextEditingController(text: c.phone);
-    _dutymController = new TextEditingController(text: c.dutym);
+    _passwordController = new TextEditingController(text: c.password);
     _addressController = new TextEditingController(text: c.address);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final imgProv =
-        'https://g2consultores.com.mx/wp-content/uploads/2015/11/icon-desarrollo-proveedores.png';
+    final imgUser =
+        'https://findicons.com/files/icons/747/network/256/user_group.png';
     return Scaffold(
       backgroundColor: Color.fromRGBO(209, 222, 234, 1),
       appBar: AppBar(
         title: TextFrave(
-          text: "Modificar Provedor",
+          text: "Modificar Usuario",
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 18,
@@ -69,10 +72,12 @@ class _ModifyContact extends State<ModifyContact> {
                 Container(
                   margin: EdgeInsets.all(6),
                   child: ClipRRect(
+                    borderRadius: BorderRadius.circular(60),
                     child: Image.network(
-                      imgProv,
+                      imgUser,
                       height: 160,
                       width: 160,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -141,15 +146,16 @@ class _ModifyContact extends State<ModifyContact> {
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
-                        controller: _dutymController,
+                        controller: _passwordController,
                         autofocus: true,
                         autocorrect: true,
                         keyboardType: TextInputType.text,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: validateDuty,
+                        validator: validatelPassword,
                         decoration: InputDecoration(
-                            labelText: "Gerente de Servicio ",
-                            prefixIcon: Icon(Icons.badge_rounded),
+                            hintText: "********",
+                            labelText: "Contraseña",
+                            prefixIcon: Icon(Icons.lock_outline),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16))),
                       ),
@@ -159,22 +165,22 @@ class _ModifyContact extends State<ModifyContact> {
                             String name = _nameController.text;
                             String email = _emailController.text;
                             String phone = _phoneController.text;
-                            String dutym = _dutymController.text;
+                            String password = _passwordController.text;
                             String address = _addressController.text;
                             if (_formKey.currentState!.validate()) {
                               print("Correo: ${_nameController.text}");
                               _formKey.currentState!.reset();
                               Navigator.pop(
                                   context,
-                                  new Provider(
+                                  new User(
                                       name: name,
                                       email: email,
                                       phone: phone,
-                                      dutym: dutym,
+                                      password: password,
                                       address: address));
                             }
                           },
-                          child: Text("Guardar Provedor")),
+                          child: Text("Guardar Usuario")),
                     ],
                   ),
                 ),
@@ -224,13 +230,9 @@ class _ModifyContact extends State<ModifyContact> {
     return null;
   }
 
-  String? validateDuty(String? value) {
-    String pattern = r'(^[a-zA-Z0-9 ]*$)';
-    RegExp regExp = new RegExp(pattern);
-    if (value?.length == 0) {
-      return "Olvidaste el nombre!";
-    } else if (!regExp.hasMatch(value!)) {
-      return "El nombre debe de ser a-z, A-Z o 0-9";
+  String? validatelPassword(String? value) {
+    if (!_hasMinLength(value!)) {
+      return 'La contraseña debe tener 8 o mas digitos';
     }
     return null;
   }

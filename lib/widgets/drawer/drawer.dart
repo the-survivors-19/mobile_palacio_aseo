@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:palacio_aseo/models/user_response.dart';
-import 'package:palacio_aseo/pages/User/dataUser.dart';
 import 'package:palacio_aseo/pages/config_user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:palacio_aseo/pages/crud/crud%20provedores/provcrud.dart';
+import 'package:palacio_aseo/pages/crud/crud%20usuarios/usuacrud.dart';
 
 import '../../pages/crud/crud categorias/categcrud.dart';
 
@@ -25,7 +25,8 @@ class DrawerMenu extends StatelessWidget {
             name: name,
             email: email,
             onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Datauser(),
+              builder: (context) => DrawerMenu(),
+              // Agregar ruta para cofig user //
             )),
           ),
           Container(
@@ -35,7 +36,7 @@ class DrawerMenu extends StatelessWidget {
                 Divider(color: Colors.white70),
                 const SizedBox(height: 6),
                 buildMenuItem(
-                  text: 'Perfil',
+                  text: 'Usuarios',
                   icon: CupertinoIcons.person,
                   onClicked: () => selectedItem(context, 0),
                 ),
@@ -129,10 +130,7 @@ class DrawerMenu extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ConfigUser(
-            token: '',
-            user: user,
-          ),
+          builder: (context) => crudUsuarios("Usuarios"),
         ));
         break;
       case 1:
